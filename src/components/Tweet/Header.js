@@ -61,7 +61,7 @@ class Header extends React.Component {
     return (
       <div className="header">
         <a className="account-group" style={styles.accountGroup} href={`https://twitter.com/${data.user.screen_name}`} {...linkProps}>
-          <img className="avatar" src={data.user.profile_image_url} style={styles.avatar} />
+          <img className="avatar" src={data.user.profile_image_url_https} style={styles.avatar} />
           <strong className="fullname" style={styles.fullname}>{data.user.name}</strong>
           {verified}
           <span>&nbsp;</span>
