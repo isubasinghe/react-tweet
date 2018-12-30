@@ -3,6 +3,17 @@ import PropTypes from 'prop-types'
 import styles from './styles'
 
 class Footer extends React.Component {
+  constructor(props) {
+      super(props)
+
+      if(this.props.onTweetAction !== undefined) {
+        this.onTweetAction = (e) => {
+          e.preventDefault()
+          this.props.onTweetAction(e.target.dataset.actiontype, this.props.data)
+        }
+      }
+  }
+
   formatCount (count) {
     const readablize = num => {
       var e = Math.floor(Math.log(num) / Math.log(1000))
@@ -18,9 +29,9 @@ class Footer extends React.Component {
 
     return (
       <div className="footer" style={styles.footer}>
-        <a className="ProfileTweet-actionList" style={styles.ProfileTweetActionList} href={`http://twitter.com/${data.user.screen_name}/status/${data.id_str}`} {...linkProps}>
+        <a className="ProfileTweet-actionList" style={styles.ProfileTweetActionList} href={`http://twitter.com/${data.user.screen_name}/status/${data.id_str}`} {...linkProps} onClick={this.onTweetAction}>
           <div className="ProfileTweet-action" style={styles.ProfileTweetAction}>
-            <button className="ProfileTweet-actionButton" style={styles.ProfileTweetActionBtn}>
+            <button className="ProfileTweet-actionButton" data-actionType="reply" style={styles.ProfileTweetActionBtn}>
               <div className="IconContainer" style={styles.IconContainer}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"> 
                   <path opacity="0" d="M0 0h24v24H0z"></path> 
@@ -30,7 +41,7 @@ class Footer extends React.Component {
             </button>
           </div>
           <div className="ProfileTweet-action" style={styles.ProfileTweetAction}>
-            <button className="ProfileTweet-actionButton" style={styles.ProfileTweetActionBtn}>
+            <button className="ProfileTweet-actionButton" data-actionType="retweet" style={styles.ProfileTweetActionBtn}>
               <div className="IconContainer" style={styles.IconContainer}>
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
                 <path fill="#657786" d="M23.77 15.67c-.292-.293-.767-.293-1.06 0l-2.22 2.22V7.65c0-2.068-1.683-3.75-3.75-3.75h-5.85c-.414 0-.75.336-.75.75s.336.75.75.75h5.85c1.24 0 2.25 1.01 2.25 2.25v10.24l-2.22-2.22c-.293-.293-.768-.293-1.06 0s-.294.768 0 1.06l3.5 3.5c.145.147.337.22.53.22s.383-.072.53-.22l3.5-3.5c.294-.292.294-.767 0-1.06zm-10.66 3.28H7.26c-1.24 0-2.25-1.01-2.25-2.25V6.46l2.22 2.22c.148.147.34.22.532.22s.384-.073.53-.22c.293-.293.293-.768 0-1.06l-3.5-3.5c-.293-.294-.768-.294-1.06 0l-3.5 3.5c-.294.292-.294.767 0 1.06s.767.293 1.06 0l2.22-2.22V16.7c0 2.068 1.683 3.75 3.75 3.75h5.85c.414 0 .75-.336.75-.75s-.337-.75-.75-.75z"/></svg>
@@ -43,7 +54,7 @@ class Footer extends React.Component {
             </button>
           </div>
           <div className="ProfileTweet-action" style={styles.ProfileTweetAction}>
-            <button className="ProfileTweet-actionButton" style={styles.ProfileTweetActionBtn}>
+            <button className="ProfileTweet-actionButton" data-actionType="favourite" style={styles.ProfileTweetActionBtn}>
               <div className="IconContainer" style={styles.IconContainer}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"> 
                   <path opacity="0" d="M0 0h24v24H0z"></path> 

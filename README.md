@@ -69,7 +69,8 @@ class MyTweetComponent extends React.Component {
 |:---|:---|:---:|:---|
 | data | Object | ✓ | A Tweet object to render. Ref [Introduction to Tweet JSON](https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/intro-to-tweet-json) |
 | linkProps | Object |  | Optional props to pass to all `<a>` links in the tweet. e.g. `{target: "_blank", rel: "noreferrer"}` |
-| tweetStyles | Object |  | Optional [React-style CSS styles](https://reactjs.org/docs/dom-elements.html#style) to pass to the root tweet `<div>` element. Useful to dynamically controlling tweet style. If you need to change the style of all tweet objects, just write regular CSS targeting `div.tweet`. |
+| tweetStyles | Object |  | [React-style CSS styles](https://reactjs.org/docs/dom-elements.html#style) to pass to the root tweet `<div>` element. Useful to dynamically controlling tweet style. If you need to change the style of all tweet objects, just write regular CSS targeting `div.tweet`. Becareful  |
+| onTweetAction | Function |  | Callback invoked whenever a tweet action button (reply, retweet, or favourite) is clicked: `(tweetAction: string, tweet: object)` tweetAction can be `reply`, `retweet`, or `favourite`. If provided, overrides the default behaviour of opening the tweet on twitter.com.
 
 ## Demo
   * live: [live demo](https://react-tweet.herokuapp.com/)
