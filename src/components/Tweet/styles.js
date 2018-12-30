@@ -112,6 +112,12 @@ export default {
     'marginLeft': '6px',
     'position': 'relative',
   },
+  'ProfileTweetActionRetweetCountActive': {
+    'color': '#17bf63',
+  },
+  'ProfileTweetActionFavouriteCountActive': {
+    'color': '#e0245e',
+  },
   'IconContainer': {
     'display': 'inline-block',
     'verticalAlign': 'middle',
