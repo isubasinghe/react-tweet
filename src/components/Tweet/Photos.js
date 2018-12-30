@@ -13,7 +13,7 @@ class Photos extends React.Component {
   }
 
   render () {
-    let {media} = this.props
+    let {media, onMediaLoad, onMediaLoadError} = this.props
 
     let mediaElements = [], mediaStyle = cloneDeep(styles.AdaptiveMedia)
     if (media.length === 2) mediaStyle.height = '253px'
@@ -187,7 +187,7 @@ class Photos extends React.Component {
 
       mediaElements.push(
         <div onClick={this.onClick.bind(this, i)} className="AdaptiveMedia-photoContainer" style={containStyle} key={i}>
-          <img src={m.media_url} style={photoStyle} />
+          <img src={m.media_url} style={photoStyle} onLoad={onMediaLoad} onError={onMediaLoadError} />
         </div>
       )
     })
@@ -202,7 +202,9 @@ class Photos extends React.Component {
 }
 
 Photos.contextTypes = {
-  'toggleModal': PropTypes.func
+  'toggleModal': PropTypes.func,
+  'onMediaLoad': PropTypes.func,
+  'onMediaLoadError': PropTypes.func
 }
 
 Photos.propTypes = {

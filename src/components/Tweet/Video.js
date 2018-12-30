@@ -5,7 +5,7 @@ import VideoJS from 'react-video-wrapper'
 
 class Video extends React.Component {
   render () {
-    let {media, gif, autoPlay} = this.props, videoSrc = ''
+    let {media, gif, autoPlay, onMediaLoad, onMediaLoadError} = this.props, videoSrc = ''
 
     media[0].video_info.variants.forEach( v => {
       if (v.url.indexOf('.mp4') > -1) {
@@ -14,14 +14,14 @@ class Video extends React.Component {
     })
 
     let VideoComponent = (
-      <video src={videoSrc} controls={!gif} autoPlay={gif || autoPlay} loop={gif} style={styles.video}>
+      <video src={videoSrc} controls={!gif} autoPlay={gif || autoPlay} loop={gif} style={styles.video} onLoad={onMediaLoad} onError={onMediaLoadError}>
         {'Your browser does not support the '}<code>{'video '}</code>{'element.'}
       </video>
     )
 
     if (typeof videojs !== 'undefined') {
       VideoComponent = (
-        <VideoJS src={videoSrc} controls={!gif} autoPlay={gif || autoPlay} loop={gif} style={styles.video}>
+        <VideoJS src={videoSrc} controls={!gif} autoPlay={gif || autoPlay} loop={gif} style={styles.video} onLoad={onMediaLoad} onError={onMediaLoadError}>
           {'Your browser does not support the '}<code>{'video '}</code>{'element.'}
         </VideoJS>
       )
@@ -41,7 +41,9 @@ class Video extends React.Component {
 
 Video.propTypes = {
   'media': PropTypes.array,
-  'gif': PropTypes.bool
+  'gif': PropTypes.bool,
+  'onMediaLoad': PropTypes.func,
+  'onMediaLoadError': PropTypes.func
 }
 
 Video.defaultProps = {

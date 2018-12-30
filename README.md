@@ -71,6 +71,8 @@ class MyTweetComponent extends React.Component {
 | linkProps | Object |  | Optional props to pass to all `<a>` links in the tweet. e.g. `{target: "_blank", rel: "noreferrer"}` |
 | tweetStyles | Object |  | [React-style CSS styles](https://reactjs.org/docs/dom-elements.html#style) to pass to the root tweet `<div>` element. Useful to dynamically controlling tweet style. If you need to change the style of all tweet objects, just write regular CSS targeting `div.tweet`. Becareful  |
 | onTweetAction | Function |  | Callback invoked whenever a tweet action button (reply, retweet, or favourite) is clicked: `(tweetAction: string, tweet: object)` tweetAction can be `reply`, `retweet`, or `favourite`. If provided, overrides the default behaviour of opening the tweet on twitter.com.
+| onMediaLoad | Function |   | Callback invoked whenever an image or video embedded within the tweet loads successfully.
+| onMediaLoadError | Function |   | Callback invoked whenever an image or video embedded within the tweet fails to load.
 
 ## Demo
   * live: [live demo](https://react-tweet.herokuapp.com/)

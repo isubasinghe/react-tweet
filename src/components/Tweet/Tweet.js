@@ -42,7 +42,7 @@ class Tweet extends React.Component {
 
   render () {
     const {modalActive, modalIndex} = this.state
-    let {data, linkProps, tweetStyles, onTweetAction} = this.props, isRT = false
+    let {data, linkProps, tweetStyles, onTweetAction, onMediaLoad, onMediaLoadError} = this.props, isRT = false
     let MediaComponent = null, QuoteComponent = null
     
     //Support for extended tweets
@@ -101,17 +101,17 @@ class Tweet extends React.Component {
 
     // use Media component if media entities exist
     if (data.entities && data.entities.media) {
-      MediaComponent = <Media  autoPlay={this.props.autoPlay} media={data.entities.media} />
+      MediaComponent = <Media autoPlay={this.props.autoPlay} media={data.entities.media} onMediaLoad={onMediaLoad} onMediaLoadError={onMediaLoadError} />
     }
 
     // extended_entities override, these are multi images, videos, gifs
     if (data.extended_entities && data.extended_entities.media) {
-      MediaComponent = <Media autoPlay={this.props.autoPlay} media={data.extended_entities.media} />
+      MediaComponent = <Media autoPlay={this.props.autoPlay} media={data.extended_entities.media} onMediaLoad={onMediaLoad} onMediaLoadError={onMediaLoadError} />
     }
 
     // use Quote component if quoted status exists
     if (data.quoted_status) {
-      QuoteComponent = <Quote data={data.quoted_status} linkProps={linkProps}/>
+      QuoteComponent = <Quote data={data.quoted_status} linkProps={linkProps} />
     }
 
     return (
@@ -141,7 +141,9 @@ Tweet.propTypes = {
   'data': PropTypes.object,
   'linkProps': PropTypes.object,
   'tweetStyles': PropTypes.object,
-  'onTweetAction': PropTypes.func
+  'onTweetAction': PropTypes.func,
+  'onMediaLoad': PropTypes.func,
+  'onMediaLoadError': PropTypes.func
 }
 
 Tweet.defaultProps = {
@@ -151,7 +153,8 @@ Tweet.defaultProps = {
   },
   'linkProps': {},
   'tweetStyles': {},
-  'onTweetAction': undefined
+  'onTweetAction': undefined,
+  'onMediaLoad': undefined
 }
 
 export default Tweet
