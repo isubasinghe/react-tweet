@@ -118,7 +118,7 @@ class Modal extends React.Component {
           </div>
           <div className="tweet" style={tweetStyle}>
             <div className="media-wrap" style={imgWrapStyle}>
-              <img src={media.media_url} style={imgStyle} />
+              <img src={media.media_url_https} style={imgStyle} />
             </div>
             <div className="content" style={contentStyle}>
               <Header data={data} />

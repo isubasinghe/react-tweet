@@ -187,7 +187,7 @@ class Photos extends React.Component {
 
       mediaElements.push(
         <div onClick={this.onClick.bind(this, i)} className="AdaptiveMedia-photoContainer" style={containStyle} key={i}>
-          <img src={m.media_url} style={photoStyle} onLoad={onMediaLoad} onError={onMediaLoadError} />
+          <img src={m.media_url_https} style={photoStyle} onLoad={onMediaLoad} onError={onMediaLoadError} />
         </div>
       )
     })
