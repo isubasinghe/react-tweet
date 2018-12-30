@@ -42,7 +42,7 @@ class Tweet extends React.Component {
 
   render () {
     const {modalActive, modalIndex} = this.state
-    let {data, linkProps} = this.props, isRT = false
+    let {data, linkProps, tweetStyles} = this.props, isRT = false
     let MediaComponent = null, QuoteComponent = null
     
     //Support for extended tweets
@@ -115,7 +115,7 @@ class Tweet extends React.Component {
     }
 
     return (
-      <div className="tweet" style={styles.tweet}>
+      <div className="tweet" style={Object.assign({}, styles.tweet, tweetStyles)}>
         {isRT ? <Context {... this.props} /> : null}
         <div className="content" style={styles.content}>
           <Header data={data} linkProps={linkProps} />
@@ -139,7 +139,8 @@ Tweet.childContextTypes = {
 
 Tweet.propTypes = {
   'data': PropTypes.object,
-  'linkProps': PropTypes.object
+  'linkProps': PropTypes.object,
+  'tweetStyles': PropTypes.object
 }
 
 Tweet.defaultProps = {
@@ -147,7 +148,8 @@ Tweet.defaultProps = {
     'entities': {},
     'user': {}
   },
-  'linkProps': {}
+  'linkProps': {},
+  'tweetStyles': {}
 }
 
 export default Tweet
