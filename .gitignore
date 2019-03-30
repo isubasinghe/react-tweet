@@ -6,3 +6,6 @@
 dist
 .DS_STORE
 npm-debug.log
+example/*.json
+notes.txt
+.vscode
