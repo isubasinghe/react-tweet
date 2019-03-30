@@ -14,14 +14,14 @@ class Video extends React.Component {
     })
 
     let VideoComponent = (
-      <video src={videoSrc} controls={!gif} autoPlay={gif || autoPlay} loop={gif} style={styles.video} onLoad={onMediaLoad} onError={onMediaLoadError}>
+      <video src={videoSrc} controls={!gif} autoPlay={gif || autoPlay} loop={gif} style={styles.video} muted={true} onLoadedData={onMediaLoad} onError={onMediaLoadError}>
         {'Your browser does not support the '}<code>{'video '}</code>{'element.'}
       </video>
     )
 
     if (typeof videojs !== 'undefined') {
       VideoComponent = (
-        <VideoJS src={videoSrc} controls={!gif} autoPlay={gif || autoPlay} loop={gif} style={styles.video} onLoad={onMediaLoad} onError={onMediaLoadError}>
+        <VideoJS src={videoSrc} controls={!gif} autoPlay={gif || autoPlay} loop={gif} style={styles.video} muted={true} onLoadedData={onMediaLoad} onError={onMediaLoadError}>
           {'Your browser does not support the '}<code>{'video '}</code>{'element.'}
         </VideoJS>
       )
